@@ -245,3 +245,8 @@ app.post("/puzzle", authGuard, upload.single("image"), async (req, res) => {
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log("Puzzle API running on port 3000"));
+console.log(`AUTH_ENABLED is set to: ${process.env.AUTH_ENABLED}`);
+console.log(`NODE_ENV is set to: ${process.env.NODE_ENV}`);
+console.log(`Server is running on port ${PORT}`);
+console.log('Username for Basic Auth:', process.env.BASIC_AUTH_USER);
+console.log('Password for Basic Auth:', process.env.BASIC_AUTH_PASSWORD);
