@@ -25,8 +25,6 @@ const basicAuth = (req, res, next) => {
     next();
   } else {
     res.setHeader("WWW-Authenticate", 'Basic realm="Restricted Area"');
-    console.log(username, password);
-    console.log(username === process.env.BASIC_AUTH_USER && password === process.env.BASIC_AUTH_PASSWORD);
     return res.status(401).json({ error: "Invalid credentials" });
   }
 };
@@ -245,10 +243,5 @@ app.post("/puzzle", authGuard, upload.single("image"), async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Puzzle API running on port 3000"));
-console.log(`AUTH_ENABLED is set to: ${process.env.AUTH_ENABLED}`);
-console.log(`NODE_ENV is set to: ${process.env.NODE_ENV}`);
-console.log(`Server is running on port ${PORT}`);
-console.log('Username for Basic Auth:', process.env.BASIC_AUTH_USER);
-console.log('Password for Basic Auth:', process.env.BASIC_AUTH_PASSWORD);
