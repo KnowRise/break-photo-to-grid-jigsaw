@@ -25,6 +25,8 @@ const basicAuth = (req, res, next) => {
     next();
   } else {
     res.setHeader("WWW-Authenticate", 'Basic realm="Restricted Area"');
+    console.log(username, password);
+    console.log(username === process.env.BASIC_AUTH_USER && password === process.env.BASIC_AUTH_PASSWORD);
     return res.status(401).json({ error: "Invalid credentials" });
   }
 };
